@@ -14,6 +14,4 @@ app.use(bodyParser.json())
 
 app.use("/api/stories", stories)
 
-app.listen(5000, () => {
-    console.log("server connected")
-})
+export default app
