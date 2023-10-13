@@ -6,59 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
-
+    <link rel="stylesheet" href="./CSS/stories.css">
+    <link rel="stylesheet" href="./CSS/nav.css">
+    
     <title>Histoires</title>
-    <style>
-        /* Style pour la mise en page */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
 
-        #histoires-container {
-            width: 80%;
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 10px 0;
-        }
-
-        h2 {
-            margin-bottom: 10px;
-        }
-
-        p {
-            margin-bottom: 15px;
-        }
-
-        button {
-            padding: 8px 12px;
-            background-color: #4caf50;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 
 <body>
+    <nav>
+        <div class="logo">
+            <a href="#"><img src="imgs/icon-removebg-preview.png" alt="logo">hope&heal</a>
+        </div>
+        <ul class="navItems">
+            <li><a href="pink.html">HOME</a></li>
+            <li><a href="hacka.html">ADVICES</a></li>
+            <li><a href="index.html">STORIES</a></li>
+            <li><a href="Sous-Page4.html">DONATIONS AND LINKS</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <form action="" class="search-bar">
+            <label>Search By Name</label>
+            <input type="text" placeholder="firstName" name="firstName">
+            <input type="text" placeholder="lastName" name="lastName">
+            <button type="submit"><img src="./imgs/search.png" alt=""></button>
+        </form>
+        <form action="" class="search-bar">
+            <input type="text" placeholder="search by title" name="q">
+            <button type="submit"><img src="./imgs/search.png" alt=""></button>
+        </form>
+    </div>
 
     <div id="histoires-container"></div>
 

@@ -1,0 +1,153 @@
+*{
+  font-family: 'Rubik', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Permet de positionner le pseudo-élément par rapport à ce conteneur */
+    min-height: 100vh;
+    flex-direction: column;
+    background-image: url("../imgs/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+      }
+  
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(245, 134, 153, 0.384),rgba(235, 90, 90, 0.219));
+    z-index: -1; /* Place le pseudo-élément en dessous des autres éléments */
+  }
+  
+  .container{
+    width: 100%;
+    min-height: 100vh;
+    padding: 5%;
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    margin-top: 1px;
+    margin-bottom: 1px;
+   
+  }
+  .search-bar{
+      width: 100%;
+      max-width: 700px;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      border-radius: 60px;
+      padding: 10px 20px;
+      backdrop-filter: blur(4px) saturate(180%);
+      margin-top: 1px;
+    }
+    
+    .search-bar input{
+      background: transparent;
+      flex: 1;
+      border: 0;
+      outline: none;
+      padding: 24px 20px;
+      font-size: 20px;
+      color: #000000;
+    }
+    
+    ::placeholder{
+      color: #2c292a;
+    }
+    
+    .search-bar button img{
+      width: 25px;
+    }
+    
+    .search-bar button{
+      border: 0;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      background: #99999d;
+      cursor: pointer;
+    }
+    
+    
+    #histoires-container .card {
+      display: flex;
+      flex-direction: column;
+      isolation: isolate;
+      position: relative;
+      width: 400px;
+      height: 15rem;
+      background: #2c292a;
+      border-radius: 1rem;
+      overflow: hidden;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 16px;
+      --gradient: linear-gradient(to bottom, #fd59ab, #ff3d7e, #7e61ff);
+      --color: #ff3243;
+      padding-left: 20px;
+      padding-bottom: 1px;
+      color: aliceblue;
+      margin-bottom: 10px;
+      flex: 1;
+      margin-top: 1px;
+    }
+    
+    #histoires-container .card:before {
+      content: "";
+      inset: 0.0625rem;
+      border-radius: 0.9375rem;
+      background: #c4c4db;
+      z-index: 2;
+    }
+    
+    #histoires-container .card:after {
+      position: absolute;
+      content: "";
+      width: 0.25rem;
+      inset: 0.65rem auto 0.65rem 0.5rem;
+      border-radius: 0.125rem;
+      background: var(--gradient);
+      transition: transform 300ms ease;
+      z-index: 4;
+    }
+    
+    #histoires-container .card:hover:after {
+      transform: translateX(0.15rem)
+    }
+    
+    #histoires-container .card title {
+      color: var(--color);
+      padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: transform 300ms ease;
+      z-index: 5;
+    }
+    
+    #histoires-container .card :hover .title {
+      transform: translateX(0.15rem)
+    }
+    
+  
+  .story {
+    color: #99999d;
+    padding: 0 1.25rem;
+    transition: transform 300ms ease;
+   
+  }
+
+
+
+
+
+
+

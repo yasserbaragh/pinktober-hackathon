@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="./CSS/stories.css">
+
+    <title>Histoires</title>
+    
+</head>
+<body>
+
+    
+        
+        <div class="container">
+        <form action="" class="search-bar">
+            <input type="text" placeholder="search by username" name="q">
+            <button type="submit"><img src="./imgs/search.png" alt=""></button>
+        </form>
+        </div>
+        
+
+        <div id="histoires-container">
+        </div>
+        
+    
+    
+
+    <script>
+                  const apiUrl = "https://hackathon-i5b0jwye6-yasserbaraghs-projects.vercel.app/api/stories";
+
+                  
+                const fetchStories = async () => {
+            try {
+                const response = await fetch(apiUrl, {
+                    cache: "no-cache"
+                });
+                const data = await response.json();
+                console.log(data);
+
+                data.forEach((story, index) => {
+                    const storyContainer = document.getElementById("histoires-container");
+
+                    const card = document.createElement("div");
+                    card.className = "card";
+
+                    const userName = document.createElement("h4");
+                    userName.textContent = story.firstName + " " + story.lastName;
+                    card.appendChild(userName);
+
+                    const title = document.createElement("h2");
+                    title.textContent = story.title
+
+                    const content = document.createElement("p");
+                    content.textContent = story.story
+
+                    /*const likeButton = document.createElement("button");
+                    shareButton.textContent = "Like";
+
+
+                    const shareButton = document.createElement("button");
+                    shareButton.textContent = "Share";*/
+
+                    card.appendChild(title);
+                    card.appendChild(content);
+
+                    /*
+                    card.appendChild(likeButton);
+                    card.appendChild(shareButton);*/
+
+                    storyContainer.appendChild(card);
+
+                
+                
+                });
+            } catch (error) {
+                console.error("Error fetching stories: ", error);
+            }
+        }
+
+
+        fetchStories();
+    </script>
+
+</body>
+</html>
