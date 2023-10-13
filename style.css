@@ -1,0 +1,97 @@
+h1{
+    color:black;
+   
+    background: linear-gradient(to right, palevioletred, purple);
+    background-repeat:no-repeat;
+    background-attachment:scroll;
+    text-align: center;
+}
+
+
+
+#navbar{
+    background-color:pink;
+    overflow: hidden;
+    padding: 10px;
+    height: 50px;
+    display: flex;
+    gap:70px;
+}
+
+a {
+    float:left; /* Make the links float side by side */
+    display: block; /* Display links as block elements for proper styling */
+    color:black; /* Text color for the links */
+    padding: 14px 16px; /* Add padding around the links for better spacing */
+    text-decoration: none; /* Remove underline from links */
+    margin-left: 20px;
+    font-size: large;
+    text-align: right;
+ }
+ #btn{
+
+ padding:3px 3px;
+    border-radius: 10px;
+   align-content: right 200px;
+   height: 2px;
+
+ }
+ 
+  a:active{
+
+  color:red; /* Text color for the active link */
+}
+
+p{
+    color:black;
+    font-family: "consolas", sans-serif;
+    font-style: italic;
+    font-weight:solid;
+    font-size: 20px;
+    text-decoration:solid;
+    padding: 50px;
+  text-shadow:5px 5px 5px tomato;
+    
+}
+img{
+    float:left;
+    margin-bottom: 70px;
+    margin-top: 50px;
+}
+button{
+    background-color: palevioletred;
+
+}
+#card{
+    display: flex;
+    justify-content:center;
+    align-content: center;
+    gap: 30px;
+  
+}
+  #Box{
+ 
+    width:150px;
+    height:100px;
+    background-color:palevioletred;
+    margin-left: 20px;
+    margin-top: 70px;
+    margin-bottom: 50px;
+    margin-right:0px;
+    text-align:center;
+    transform: skew(10deg, 10deg);
+    box-shadow:  5px 5px 5px tomato;
+
+
+ }
+ 
+#label{
+    background-color: pink;
+    margin-left: 50px;
+    margin-top: 0px;
+   margin-bottom: 40px;
+   float:center;
+}
+
+
+
