@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+
+    <title>Histoires</title>
+    <style>
+        /* Style pour la mise en page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #histoires-container {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="histoires-container">
+
+        <div class="card">
+            <h2>Titre de l'histoire 1</h2>
+            <p>Contenu de l'histoire 1</p>
+            <button>J'aime</button>
+            <button>Partager</button>
+        </div>
+
+        <div class="card">
+            <h2>Titre de l'histoire 2</h2>
+            <p>Contenu de l'histoire 2</p>
+            <button>J'aime</button>
+            <button>Partager</button>
+        </div>
+    </div>
+
+    <script>
+
+        const apiUrl = "https://hackathon-i5b0jwye6-yasserbaraghs-projects.vercel.app/api/stories";
+        const fetchStories = async () => {
+            try {
+                const response = await fetch(apiUrl, {
+                    cache: "no-cache"
+                });
+                const data = await response.json();
+
+                data.forEach((story, index) => {
+                    const storyContainer = document.getElementById("histoires-container");
+
+                    const card = document.createElement("div");
+                    card.className = "card";
+
+                    const title = document.createElement("h2");
+                    title.textContent = story.title
+
+                    const content = document.createElement("p");
+                    content.textContent = story.story
+
+                    /*const likeButton = document.createElement("button");
+                    likeButton.textContent = "J'aime";
+                    const shareButton = document.createElement("button");
+                    shareButton.textContent = "Partager";*/
+
+                    card.appendChild(title);
+                    card.appendChild(content);
+                    /*card.appendChild(likeButton);
+                    card.appendChild(shareButton);*/
+
+                    storyContainer.appendChild(card);
+                });
+            } catch (error) {
+                console.error("Error fetching stories: ", error);
+            }
+        }
+
+
+        fetchStories();
+    </script>
+
+</body>
+
+</html>
