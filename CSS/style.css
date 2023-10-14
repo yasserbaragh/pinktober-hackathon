@@ -1,97 +1,106 @@
-h1{
-    color:black;
-   
-    background: linear-gradient(to right, palevioletred, purple);
-    background-repeat:no-repeat;
-    background-attachment:scroll;
-    text-align: center;
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(218, 40, 64, 0.719), rgba(253, 104, 153, 0.377)), url(../imgs/background.jpg);
+    background-position: center;
+    background-size: cover;
+    padding-left: 8%;
+    padding-right: 8%;
+    box-sizing: border-box;
 }
 
 
-
-#navbar{
-    background-color:pink;
-    overflow: hidden;
-    padding: 10px;
-    height: 50px;
+.row{
     display: flex;
-    gap:70px;
+    height: 88%;
+    align-items: center;
 }
 
-a {
-    float:left; /* Make the links float side by side */
-    display: block; /* Display links as block elements for proper styling */
-    color:black; /* Text color for the links */
-    padding: 14px 16px; /* Add padding around the links for better spacing */
-    text-decoration: none; /* Remove underline from links */
-    margin-left: 20px;
-    font-size: large;
-    text-align: right;
- }
- #btn{
+.col{
+    flex-basis: 50%;
+}
 
- padding:3px 3px;
-    border-radius: 10px;
-   align-content: right 200px;
-   height: 2px;
+h1{
+    padding-top: 10px;
+    color: #fff;
+    font-size: 100px;
+}
 
- }
- 
-  a:active{
-
-  color:red; /* Text color for the active link */
+h2{
+    padding-top: 10px;
+    color: #fff;
+    font-size: 100px;
 }
 
 p{
-    color:black;
-    font-family: "consolas", sans-serif;
-    font-style: italic;
-    font-weight:solid;
-    font-size: 20px;
-    text-decoration:solid;
-    padding: 50px;
-  text-shadow:5px 5px 5px tomato;
+    color: #fff;
+    font-size: 30px;
+    line-height: 15px;
+}
+
+a button{
+    width: 180px;
+    color: #000;
+    font-size: 12px;
+    padding: 12px 0;
+    background: #fff;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    margin-top: 30px;
+    cursor: pointer;
+
+}
+
+.card{
+    width: 200px;
+    height: 250px;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 10px 10px;
     
+    background-position: center;
+    background-size: cover;
+    gap: 15px;
+    transition: transform 0.5s;
 }
-img{
-    float:left;
-    margin-bottom: 70px;
-    margin-top: 50px;
-}
-button{
-    background-color: palevioletred;
 
+.card1{
+    background-image: linear-gradient(rgba(206, 46, 67, 0.801), rgba(212, 59, 110, 0.336)), url(../imgs/illustration-vectorielle-cancer-du-sein-concept-abstrait-facteur-oncologie-femmes-prevention-diagnostic-fonds-du-cancer-du-sein-sensibilisation-aux-maladies-depistage-controle-metaphore-abstraite-mammographie_335.jpg);
 }
-#card{
-    display: flex;
-    justify-content:center;
-    align-content: center;
-    gap: 30px;
-  
+
+.card2{
+    background-image: linear-gradient(rgba(206, 46, 67, 0.801), rgba(212, 59, 110, 0.336)), url(../imgs/vecteur.jpg);
 }
-  #Box{
+
+
+.card3{
+    background-image: linear-gradient(rgba(206, 46, 67, 0.801), rgba(212, 59, 110, 0.336)), url(../imgs/new.avif);
+}
  
-    width:150px;
-    height:100px;
-    background-color:palevioletred;
-    margin-left: 20px;
-    margin-top: 70px;
-    margin-bottom: 50px;
-    margin-right:0px;
-    text-align:center;
-    transform: skew(10deg, 10deg);
-    box-shadow:  5px 5px 5px tomato;
-
-
- }
- 
-#label{
-    background-color: pink;
-    margin-left: 50px;
-    margin-top: 0px;
-   margin-bottom: 40px;
-   float:center;
+.card4{
+    background-image: linear-gradient(rgba(206, 46, 67, 0.801), rgba(212, 59, 110, 0.336)), url(../imgs/4.jpg);
 }
 
+.card:hover{
+    transform: translateY(-10px) ;
 
+}
 
+h5{
+    color: #fff;
+    text-shadow: 0 0 5px #999;
+}
+.card p{
+    text-shadow: 0 0 15px #000;
+    font-size: 8px ;
+}

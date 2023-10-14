@@ -1,43 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
     <link rel="stylesheet" href="./CSS/stories.css">
+    <link rel="stylesheet" href="./CSS/nav.css">
 
     <title>Histoires</title>
-    
+
 </head>
+
 <body>
+    <div class="container">
+        <div class="navbar">
+            <img src="imgs/logo.png" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="advices.html">ADVICES</a></li>
+                    <li><a href="stories.html">STORIES</a></li>
+                    <li><a href="donations.html">DONATIONS AND HELP</a></li>
+                </ul>
+            </nav>
+        </div>
 
     
-        
-        <div class="container">
-        <form action="" class="search-bar">
-            <input type="text" placeholder="search by username" name="q">
-            <button type="submit"><img src="./imgs/search.png" alt=""></button>
-        </form>
-        </div>
-        
 
-        <div id="histoires-container">
-        </div>
-        
-    
-    
+        <center>
+            <div class="details">
+
+                <form class="search" onsubmit="nameSearch(event)">
+                    <input placeholder="Search by name of the user" type="text" name="name" onchange="addstory(this, 'name')">
+                    <button type="submit">Go</button>
+                </form>
+                <form class="search" onsubmit="titleSearch(event)">
+                    <input placeholder="Search by title story" type="text" name="title" onchange="addstory(this, 'title')">
+                    <button type="submit">Go</button>
+                </form>
+                <button class="view" onclick="view(event)">View All</button>
+                <div class="addyourstory">
+                    <a href="form.html">
+                        <button type="button">Tell us your story</button>
+                    </a>
+                </div>
+            </div>
+            
+        </center>
+
+        <div id="histoires-container"></div>
+            
+    </div>
+       
 
     <script>
-                  const apiUrl = "https://hackathon-i5b0jwye6-yasserbaraghs-projects.vercel.app/api/stories";
 
-                  
-                const fetchStories = async () => {
+        let stories = "all"
+
+        const values = {
+            title: "",
+            name: ""
+        }
+
+        const apiUrl = "https://hackathon-ot3qj4uz3-yasserbaraghs-projects.vercel.app/api/stories";
+        const fetchStories = async () => {
             try {
-                const response = await fetch(apiUrl, {
-                    cache: "no-cache"
-                });
-                const data = await response.json();
-                console.log(data);
+                const storyContainer = document.getElementById("histoires-container");
+                storyContainer.innerHTML = '';
+
+                let data
+                if (stories === "all") {
+                    const response = await fetch(apiUrl, {
+                        cache: "no-cache"
+                    });
+                    data = null
+                    data = await response.json();
+                    console.log(data)
+                } else if (stories === "title") {
+                    const response = await fetch(`${apiUrl}/byTitle`, {
+                        cache: "no-cache",
+                        method: "POST",
+                        body: JSON.stringify(values),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    });
+                    data = null
+                    data = await response.json();
+                    console.log(data)
+                } else if (stories === "name") {
+                    const response = await fetch(`${apiUrl}/byName`, {
+                        cache: "no-cache",
+                        method: "POST",
+                        body: JSON.stringify(values),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    });
+                    data = null
+                    data = await response.json();
+                    console.log(data)
+                }
+
 
                 data.forEach((story, index) => {
                     const storyContainer = document.getElementById("histoires-container");
@@ -45,9 +111,9 @@
                     const card = document.createElement("div");
                     card.className = "card";
 
-                    const userName = document.createElement("h4");
-                    userName.textContent = story.firstName + " " + story.lastName;
-                    card.appendChild(userName);
+                    const card_inner = document.createElement("div");
+                    card_inner.className = "card_inner";
+
 
                     const title = document.createElement("h2");
                     title.textContent = story.title
@@ -55,33 +121,137 @@
                     const content = document.createElement("p");
                     content.textContent = story.story
 
-                    /*const likeButton = document.createElement("button");
-                    shareButton.textContent = "Like";
+                    const name = document.createElement("p");
+                    name.textContent = story.firstName + " " + story.lastName
+
+                    const dob = new Date(story.dateNaiss)
+                    const month_diff = Date.now() - dob.getTime();
+                    const age_dt = new Date(month_diff);
+                    const year = age_dt.getUTCFullYear();
+                    const age = Math.abs(year - 1970);
 
 
-                    const shareButton = document.createElement("button");
-                    shareButton.textContent = "Share";*/
+                    const dateNaiss = document.createElement("p");
+                    dateNaiss.textContent = age + "years old"
 
-                    card.appendChild(title);
-                    card.appendChild(content);
+                    const date = document.createElement("p");
+                    date.textContent = story.createdAt
 
-                    /*
-                    card.appendChild(likeButton);
-                    card.appendChild(shareButton);*/
+                    const deleteButton = document.createElement("button");
+                    deleteButton.className = "delete noselect";
+                    deleteButton.innerHTML = '<span class="text">Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span>';
+                    deleteButton.textContent = "Delete";
+                    deleteButton.addEventListener("click", function () {
+                        const passwordForm = document.createElement("form");
+                        const labelInput = document.createElement("label");
+                        labelInput.textContent = "If you created this story enter the story password otherwise you can't delete it"
+                        const passwordInput = document.createElement("input");
+                        passwordInput.type = "password";
+                        const submitButton = document.createElement("button");
+                        submitButton.textContent = "Delete";
+                        const undoButton = document.createElement("button");
+                        undoButton.textContent = "undo";
+
+                        passwordForm.appendChild(passwordInput);
+                        passwordForm.appendChild(document.createElement("br"))
+                        passwordForm.appendChild(labelInput)
+                        passwordForm.appendChild(submitButton);
+                        passwordForm.appendChild(undoButton)
+
+                        this.disabled = true
+
+                        card.appendChild(passwordForm);
+
+                        submitButton.addEventListener("click", async function (event) {
+                            event.preventDefault();
+                            const enteredPassword = {
+                                password: passwordInput.value
+                            }
+
+                            const response = await fetch(`https://hackathon-feq3w3jxq-yasserbaraghs-projects.vercel.app/api/stories/${story._id}/delete`, {
+                                cache: "no-cache",
+                                method: "DELETE",
+                                body: JSON.stringify(enteredPassword),
+                                headers: {
+                                    "Content-Type": "application/json"
+                                }
+                            })
+
+                            if (response.ok) {
+                                const data = await response.json();
+                                alert(data.message)
+                                Object.keys(values).forEach((property) => {
+                                    values[property] = "";
+                                });
+                                window.location.reload()
+                            } else {
+
+                                const errorData = await response.json();
+
+                                alert(errorData.error);
+                            }
+
+                        });
+
+                        undoButton.onclick = function () {
+                            card.removeChild(passwordForm)
+                            deleteButton.disabled = false
+                        }
+                    })
+
+                    card_inner.appendChild(title);
+                    card_inner.appendChild(content);
+                    card_inner.appendChild(name);
+                    card_inner.appendChild(dateNaiss);
+                    card_inner.appendChild(date);
+                    card_inner.appendChild(deleteButton);
+                    card.appendChild(card_inner);
+                    //card.appendChild(shareButton);
 
                     storyContainer.appendChild(card);
-
-                
-                
                 });
             } catch (error) {
                 console.error("Error fetching stories: ", error);
             }
         }
 
+        const addstory = (element, property) => {
+            values[property] = element.value
+        }
+
+        const view = (element) => {
+            stories = "all"
+            clearSearchFields()
+            fetchStories()
+        }
+
+        const titleSearch = async (event) => {
+            event.preventDefault()
+            stories = "title"
+            clearSearchFields()
+            await fetchStories()
+        }
+
+        const nameSearch = async (event) => {
+            event.preventDefault()
+            stories = "name"
+            clearSearchFields()
+            await fetchStories()
+
+        }
+
+        function clearSearchFields() {
+            const titleInput = document.querySelector('input[name="title"]');
+            const name = document.querySelector('input[name="name"]');
+
+            titleInput.value = '';
+            name.value = '';
+        }
 
         fetchStories();
+
     </script>
 
 </body>
+
 </html>
