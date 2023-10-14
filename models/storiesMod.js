@@ -16,7 +16,7 @@ const stories = new Schema({
     dateNaiss: String,
     password: {
         type: String,
-        required: false,
+        required: true,
     },
 }, { timestamps: true })
 
