@@ -34,7 +34,6 @@ body{
 /* ----------- SLIDER ------------ */
 .swiper{
   width: 100%;
-  overflow-x: hidden;
 }
 
 .swiper-wrapper{
